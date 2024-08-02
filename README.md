@@ -10,45 +10,18 @@ Barebone project with spring boot web and spring security.
 mvnw spring-boot:run
 ```
 
-Access the local server at  [http://localhost:8080]().
+Access the local server at  [http://localhost:8080]() to see the Welcome page. No authenticated user is required to view this page.
 
-The credentials defined at `application.properties` are no longer used.
+Accessing the [http://localhost:8080/users]() page or the [http://localhost:8080/managers]() page will prompt the user to log in. 
 
-```bash
-#spring.security.user.name=john
-#spring.security.user.password=user123
-#pring.security.user.roles=USERS
-```
-The credentials is now defined at the `SecurityConfiguration` class with
-two users.
+Using the user `john` one can access the `users` page. Using the user `manager`, both pages can be viewed.
 
-```java
-public InMemoryUserDetailsManager userDetailsService() {
-        UserDetails user = User.builder()
-        .username("john")
-        .password("{noop}user321")
-        .roles("USERS")
-        .build();
-
-        UserDetails manager = User.builder()
-        .username("manager")
-        .password("{noop}manager321")
-        .roles("MANAGERS")
-        .build();
-
-        return new InMemoryUserDetailsManager(user, manager);
-    }
-```
-
-Still, after logging in, just a Whitelabel Error Page would be shown because there's nothing created in the application yet.
-
-![whitelabel error page](images/whitelabel-error-page.png)
 
 ----
-## Next - Simple Authorization
+## Next - JDBC authentication
 
-Change to the `step03` branch to setup simple authorization.
+Change to the `step04` branch to setup JDBC authorization.
 
 ```bash
-git checkout step03
+git checkout step04
 ```
